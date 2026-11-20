@@ -3,17 +3,13 @@ services:
     name: tibia-character-verification
     runtime: docker
     region: frankfurt
-    plan: starter
+    plan: free
     healthCheckPath: /health
-    disk:
-      name: tibia-verify-data
-      mountPath: /var/lib/tibia-verify
-      sizeGB: 1
     envVars:
       - key: TIBIA_DATA_DIR
-        value: /var/lib/tibia-verify
+        value: /tmp/tibia-verify
       - key: PRODUCTION
-        value: "1"
+        value: "0"
       - key: COOKIE_SECURE
         value: "1"
       - key: ADMIN_USERNAME
