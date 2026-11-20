@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: tibia-character-verification
+    runtime: docker
+    region: frankfurt
+    plan: starter
+    healthCheckPath: /health
+    disk:
+      name: tibia-verify-data
+      mountPath: /var/lib/tibia-verify
+      sizeGB: 1
+    envVars:
+      - key: TIBIA_DATA_DIR
+        value: /var/lib/tibia-verify
+      - key: PRODUCTION
+        value: "1"
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: TIBIADATA_URL
+        value: https://api.tibiadata.com/v5
