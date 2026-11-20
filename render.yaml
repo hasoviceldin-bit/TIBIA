@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: tibia-character-verification-2026
+    runtime: python
+    rootDir: tibia-verifier
+    region: frankfurt
+    plan: starter
+    buildCommand: python unpack.py && pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    disk:
+      name: tibia-verify-persistent
+      mountPath: /var/lib/tibia-verify
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: TIBIA_DATA_DIR
+        value: /var/lib/tibia-verify
+      - key: PRODUCTION
+        value: "1"
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: TIBIADATA_URL
+        value: https://api.tibiadata.com/v5
