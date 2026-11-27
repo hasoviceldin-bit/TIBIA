@@ -20,3 +20,5 @@ services:
         generateValue: true
       - key: TIBIADATA_URL
         value: https://api.tibiadata.com/v5
+      - key: INTEL_RELEASE
+        value: "2026-11-27-pvp-transfers"
