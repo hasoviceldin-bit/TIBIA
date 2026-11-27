@@ -4,7 +4,7 @@ services:
     runtime: python
     region: frankfurt
     plan: free
-    buildCommand: cd tibia-verifier && python unpack.py && python fix_v5.py && python fix_transfer_ui.py && python fix_simple_deaths.py && python fix_missing_pvp.py && pip install -r requirements.txt
+    buildCommand: cd tibia-verifier && python unpack.py && python fix_v5.py && python fix_transfer_ui.py && python fix_simple_deaths.py && python fix_missing_pvp.py && python fix_scan_warnings.py && pip install -r requirements.txt
     startCommand: cd tibia-verifier && uvicorn server:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
@@ -21,4 +21,4 @@ services:
       - key: TIBIADATA_URL
         value: https://api.tibiadata.com/v5
       - key: INTEL_RELEASE
-        value: "2026-11-27-death-regression-fix"
+        value: "2026-11-27-warning-severity"
