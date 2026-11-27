@@ -5,7 +5,7 @@ Runs after fix_missing_pvp.py. Does not change presentation or invent live scan 
 from pathlib import Path
 p = Path(__file__).with_name('intel.py')
 s = p.read_text(encoding='utf-8')
-anchor = "        ('Warlord Gomez', '2026-11-25T19:08:00+00:00', 1260, 'Bep Bep Beeeep'),"
+anchor = "        ('Warlord Gomez','2026-11-25T19:08:00+00:00',1260,'Bep Bep Beeeep'),"
 assert s.count(anchor) == 1, 'Historical death checkpoint changed'
 new = """        # Three archived records from the November 27 dashboard screenshot.
         ('Attisa', '2026-11-27T00:59:00', 1227, 'Bep Bep Beeeep'),
